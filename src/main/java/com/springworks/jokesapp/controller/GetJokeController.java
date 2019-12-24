@@ -1,0 +1,26 @@
+package com.springworks.jokesapp.controller;
+
+import com.springworks.jokesapp.service.GetJokeService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class GetJokeController {
+
+    private GetJokeService getJokeService;
+
+    public GetJokeController(GetJokeService getJokeService) {
+        this.getJokeService = getJokeService;
+    }
+
+    @RequestMapping("/")
+    public String getJoke(Model model){
+
+        String joke = getJokeService.getJoke();
+        model.addAttribute("joke",joke );
+        return "chucknorris";
+
+    }
+
+}
